@@ -127,3 +127,88 @@ def game_hash
 end
 
 # Write code here
+def num_points_scored(player_name)
+
+
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |player_data|
+      if player_data[:player_name] == player_name
+        return player_data[:points]
+      end
+    end
+  end
+end
+
+
+#shoe size
+def shoe_size(player_name)
+  game_hash.each do | location, team_data | 
+    team_data.each do |player, data|
+      if player == :players
+        data.each do |player|
+          if player [:player_name]==player_name
+            return player[:shoe]
+    
+  end
+end
+end
+end
+end
+end
+
+#team colors
+def team_colors(team_name)
+ 
+    if game_hash[:home][:team_name]==team_name
+      game_hash[:home][:colors]
+      elsif game_hash[:away][:team_name]==team_name
+        game_hash[:away][:colors]
+      end
+    end
+    
+#team name
+def team_names
+  [game_hash[:home][:team_name],game_hash[:away][:team_name]]
+end
+
+
+
+#player numbers
+def player_numbers(team_name)
+  jersey_numbers = []
+  if game_hash[:home][:team_name]==team_name
+    game_hash[:home][:players].each do |player|
+      jersey_numbers.push(player[:number])
+    end
+    elsif game_hash[:away][:team_name]==team_name
+    game_hash[:away][:players].each do |player|
+     jersey_numbers.push(player[:number])
+    end 
+
+  end
+  jersey_numbers
+  end
+
+#player stats
+
+def player_stats(player_name)
+  player_list = game_hash[:home][:players] + game_hash[:away][:players]
+  player_list.find { |player_data| player_data[:player_name] == player_name}
+  
+end
+
+#big shoe size with rebounds for
+
+def big_shoe_rebounds
+  player_list = game_hash[:home][:players] + game_hash[:away][:players]
+  big_shoe_player = player_list[0]
+
+  player_list.each do |player_data| 
+    if player_data[:shoe] > big_shoe_player[:shoe]
+      big_shoe_player = player_data
+
+  end
+end
+
+  return big_shoe_player[:rebounds]
+end
